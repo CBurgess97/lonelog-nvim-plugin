@@ -15,7 +15,22 @@ TTRPG sessions. Requires Neovim 0.12+.
 
 The grammar covers core notation (`@`, `?`, `d:`, `->`, `=>`) and tags (`[N:…]`, `[#N:…]`,
 `[Clock:… 3/6]`, multi-line tags). It also handles meta notes, tables and generators, dialogue,
-excerpts, and analog session and scene markers. Add-on notation isn't covered yet.
+excerpts, and analog session and scene markers.
+
+Add-on support:
+
+| Add-on | What's recognised |
+| --- | --- |
+| Combat | `[COMBAT]`…`[/COMBAT]`, `Rd1` rounds, compact one-line rounds (`Rd1 @ Slash d:17≥12 Hit => [F:Thug|dead]`), `[F:…]` foes |
+| Dungeon Crawling | `[R:…]` rooms, `[DUNGEON STATUS]` blocks |
+| Resource Tracking | `[Inv:…]`, `[Wealth:…]`, deltas (`HP-2`), counts (`×3`), transitions (`3→1`, `d8→d6`) |
+| Wargaming | `Tn1` turns, `[Unit:…]`, `[Force:…]`, `[Scenario:…]`, `[BATTLE]`, `[CAMPAIGN]` |
+| Dice Notation | modifiers such as `4d6dl1`, `2d20kh1`, `d6!`, `4dF`, `d%`, `5d10>=7` |
+| Cards | draws in a roll: `d: draw=Qs`, `Past=M16r`, `Future=KnCu` |
+
+Any `[UPPERCASE NAME]` block and any `[Type:…]` tag is recognised, so community add-ons that
+follow the add-on guidelines work too. Not covered: dice pools in braces (`{4d6, 2d10}`), roll
+breakdowns (`[4, 6!, 2]`), `//` labels, and Partylog, which is a separate notation.
 
 Highlights use standard captures (`@keyword`, `@type`, `@number`, …), so any colorscheme works. To
 style Lonelog on its own, override the language-specific groups, e.g.
