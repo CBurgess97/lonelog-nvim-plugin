@@ -1,10 +1,10 @@
-==================
+==================|||
 Reference tag and progress
-==================
+==================|||
 
 [#N:Jonah] [Clock:Ritual 5/12] [Timer:Dawn 3]
 
----
+---|||
 
 (source_file
   (tag
@@ -18,13 +18,13 @@ Reference tag and progress
     (tag_open)
     (tag_name)))
 
-==================
+==================|||
 Categorised attributes
-==================
+==================|||
 
 [N:Guard|role:watchful|status:armed,alert]
 
----
+---|||
 
 (source_file
   (tag
@@ -37,15 +37,15 @@ Categorised attributes
     (tag_attribute
       (tag_key))))
 
-==================
+==================|||
 Multi-line tag
-==================
+==================|||
 
 [PC:Jonah
   | trait: friendly, curious
 ]
 
----
+---|||
 
 (source_file
   (tag
@@ -55,13 +55,13 @@ Multi-line tag
     (tag_attribute
       (tag_key))))
 
-==================
+==================|||
 Roll context brackets are not tags
-==================
+==================|||
 
 d: Stealth d6 [+cover, -injured] vs TN 4 -> Fail
 
----
+---|||
 
 (source_file
   (roll

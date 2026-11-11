@@ -1,49 +1,49 @@
-==================
+==================|||
 Action
-==================
+==================|||
 
 @ Pick the lock
 
----
+---|||
 
 (source_file
   (action))
 
-==================
+==================|||
 Action with named actor
-==================
+==================|||
 
 @(Jonah) Keeps watch at the door
 
----
+---|||
 
 (source_file
   (action
     (actor)))
 
-==================
+==================|||
 Question and oracle answer
-==================
+==================|||
 
 ? Is anyone inside?
 -> Yes, but... (d6=4)
 
----
+---|||
 
 (source_file
   (question)
   (outcome
     (dice)))
 
-==================
+==================|||
 Mechanics roll with comparison
-==================
+==================|||
 
 d: Stealth d6=5 vs TN 4 -> Success
 d: 5≥4 -> S
 d: 2<=4 F
 
----
+---|||
 
 (source_file
   (roll
@@ -56,13 +56,13 @@ d: 2<=4 F
   (roll
     (comparison)))
 
-==================
+==================|||
 Consequence with tag
-==================
+==================|||
 
 => I slip inside unnoticed. [L:Library|dark|quiet]
 
----
+---|||
 
 (source_file
   (consequence
@@ -74,15 +74,15 @@ Consequence with tag
       (tag_separator)
       (tag_attribute))))
 
-==================
+==================|||
 Indented sequence
-==================
+==================|||
 
 @ Search the archives
     d: Investigation d6=5 vs TN 4 -> Success
     => I find the manifests.
 
----
+---|||
 
 (source_file
   (action)

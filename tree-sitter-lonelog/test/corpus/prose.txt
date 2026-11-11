@@ -1,24 +1,24 @@
-==================
+==================|||
 Prose stays text
-==================
+==================|||
 
 The rain had not stopped since Tuesday. Why would it?
 Session notes: nothing happened, and the 3 of us left (quietly).
 Nobody said "goodbye".
 
----
+---|||
 
 (source_file
   (string))
 
-==================
+==================|||
 Unclosed tag does not swallow the following line
-==================
+==================|||
 
 => She waves. [N:Stranger|friendly
 @ Follow her
 
----
+---|||
 
 (source_file
   (consequence
