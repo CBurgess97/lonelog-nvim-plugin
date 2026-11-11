@@ -25,6 +25,8 @@
             lua-language-server
             stylua # format: `stylua .`
             lua54Packages.luacheck # lint: `luacheck .`
+            tree-sitter # grammar: `make` generates, tests and builds parser/lonelog.so
+            gcc # compiles the generated parser
           ];
           # Let `require` find rocks installed into the project-local lua_modules tree
           shellHook = ''
