@@ -1,0 +1,74 @@
+==================
+Reference tag and progress
+==================
+
+[#N:Jonah] [Clock:Ritual 5/12] [Timer:Dawn 3]
+
+---
+
+(source_file
+  (text_line
+    (tag
+      (tag_open)
+      (tag_text))
+    (tag
+      (tag_open)
+      (tag_text)
+      (progress))
+    (tag
+      (tag_open)
+      (tag_text)
+      (tag_text))))
+
+==================
+Categorised attributes
+==================
+
+[N:Guard|role:watchful|status:armed,alert]
+
+---
+
+(source_file
+  (text_line
+    (tag
+      (tag_open)
+      (tag_text)
+      (tag_separator)
+      (tag_key)
+      (tag_text)
+      (tag_separator)
+      (tag_key)
+      (tag_text))))
+
+==================
+Multi-line tag
+==================
+
+[PC:Jonah
+  | trait: friendly, curious
+]
+
+---
+
+(source_file
+  (text_line
+    (tag
+      (tag_open)
+      (tag_text)
+      (tag_separator)
+      (tag_key)
+      (tag_text))))
+
+==================
+Roll context brackets are not tags
+==================
+
+d: Stealth d6 [+cover, -injured] vs TN 4 -> Fail
+
+---
+
+(source_file
+  (roll
+    (dice)
+    (comparison)
+    (outcome)))

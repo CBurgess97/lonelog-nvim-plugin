@@ -1,0 +1,93 @@
+==================|||
+Analog session and scenes
+==================|||
+
+=== Session 1 ===
+S1 *Tavern, evening*
+S5a *Flashback*
+S7.1 *Day 1: Forest*
+T1+T2-S5 *Converged*
+
+---|||
+
+(source_file
+  (session_header)
+  (scene
+    (scene_id))
+  (scene
+    (scene_id))
+  (scene
+    (scene_id))
+  (scene
+    (scene_id)))
+
+==================|||
+Meta notes and asides
+==================|||
+
+(note: testing a house rule)
+(Memory triggered by the photograph)
+=> Done. (reminder: revisit next session)
+
+---|||
+
+(source_file
+  (aside
+    (meta_note))
+  (aside
+    (meta_note))
+  (consequence
+    (meta_note)))
+
+==================|||
+Tables and generators
+==================|||
+
+tbl: Forest Encounter (d6)
+  1-2: Nothing — eerie silence
+  3: Animal tracks
+tbl: Weather [Clear, Fog] d4=2 -> Fog
+gen: NPC
+  Role: d6=3 -> Merchant
+
+---|||
+
+(source_file
+  (table
+    (dice))
+  (table_entry
+    (entry_key))
+  (table_entry
+    (entry_key))
+  (table
+    (dice)
+    (outcome))
+  (generator)
+  (text_line
+    (dice)
+    (outcome)))
+
+==================|||
+Dialogue and excerpts
+==================|||
+
+N (Guard): "Who's there?"
+PC: [whispers] "Not happening."
+\---
+The diary reads.
+---\
+--- END COMBAT ---
+
+---|||
+
+(source_file
+  (dialogue
+    (speaker)
+    (string))
+  (dialogue
+    (speaker)
+    (string))
+  (excerpt_delimiter)
+  (text_line)
+  (excerpt_delimiter)
+  (block_marker))

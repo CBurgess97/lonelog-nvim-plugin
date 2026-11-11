@@ -1,0 +1,756 @@
+[
+  {
+    "type": "action",
+    "named": true,
+    "fields": {
+      "actor": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "actor",
+            "named": true
+          }
+        ]
+      },
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "aside",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "consequence",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "=>",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dialogue",
+    "named": true,
+    "fields": {
+      "speaker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "speaker",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generator",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "gen:",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "outcome",
+    "named": true,
+    "fields": {
+      "arrow": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "->",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "question",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "?",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "roll",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "d:",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scene",
+    "named": true,
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "scene_id",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "action",
+          "named": true
+        },
+        {
+          "type": "aside",
+          "named": true
+        },
+        {
+          "type": "block_marker",
+          "named": true
+        },
+        {
+          "type": "consequence",
+          "named": true
+        },
+        {
+          "type": "dialogue",
+          "named": true
+        },
+        {
+          "type": "excerpt_delimiter",
+          "named": true
+        },
+        {
+          "type": "generator",
+          "named": true
+        },
+        {
+          "type": "question",
+          "named": true
+        },
+        {
+          "type": "roll",
+          "named": true
+        },
+        {
+          "type": "scene",
+          "named": true
+        },
+        {
+          "type": "session_header",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        },
+        {
+          "type": "table_entry",
+          "named": true
+        },
+        {
+          "type": "text_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "table",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tbl:",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "table_entry",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "entry_key",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag",
+    "named": true,
+    "fields": {
+      "open": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tag_open",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "progress",
+          "named": true
+        },
+        {
+          "type": "tag_key",
+          "named": true
+        },
+        {
+          "type": "tag_separator",
+          "named": true
+        },
+        {
+          "type": "tag_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "text_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "outcome",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "actor",
+    "named": true
+  },
+  {
+    "type": "block_marker",
+    "named": true
+  },
+  {
+    "type": "comparison",
+    "named": true
+  },
+  {
+    "type": "d:",
+    "named": false
+  },
+  {
+    "type": "dice",
+    "named": true
+  },
+  {
+    "type": "entry_key",
+    "named": true
+  },
+  {
+    "type": "excerpt_delimiter",
+    "named": true
+  },
+  {
+    "type": "gen:",
+    "named": false
+  },
+  {
+    "type": "meta_note",
+    "named": true
+  },
+  {
+    "type": "progress",
+    "named": true
+  },
+  {
+    "type": "scene_id",
+    "named": true
+  },
+  {
+    "type": "session_header",
+    "named": true
+  },
+  {
+    "type": "speaker",
+    "named": true
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
+    "type": "tag_key",
+    "named": true
+  },
+  {
+    "type": "tag_open",
+    "named": true
+  },
+  {
+    "type": "tag_separator",
+    "named": true
+  },
+  {
+    "type": "tag_text",
+    "named": true
+  },
+  {
+    "type": "tbl:",
+    "named": false
+  }
+]
