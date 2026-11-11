@@ -84,6 +84,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "event"
+        },
+        {
+          "type": "SYMBOL",
           "name": "table"
         },
         {
@@ -152,6 +156,42 @@
               },
               "named": false,
               "value": "?"
+            }
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_plain"
+            }
+          }
+        ]
+      }
+    },
+    "event": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "marker",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 4,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "![ \\t]"
+                  }
+                }
+              },
+              "named": false,
+              "value": "!"
             }
           },
           {
@@ -254,7 +294,7 @@
                   "value": 4,
                   "content": {
                     "type": "PATTERN",
-                    "value": "\\d+(-\\d+)?:"
+                    "value": "(\\d+(-\\d+)?|R\\d+):"
                   }
                 }
               },
@@ -373,7 +413,7 @@
         "value": 4,
         "content": {
           "type": "PATTERN",
-          "value": "(Rd|Tn)\\d+"
+          "value": "(Rd|Tn|R)\\d+"
         }
       }
     },
@@ -395,7 +435,7 @@
                   "value": 4,
                   "content": {
                     "type": "PATTERN",
-                    "value": "\\[[A-Z][a-z]+\\]"
+                    "value": "\\[([A-Z]+[a-z][A-Za-z]*|[A-Z]{1,2})( [A-Z][A-Za-z]*)*\\]"
                   }
                 }
               },
@@ -570,20 +610,29 @@
             "type": "FIELD",
             "name": "marker",
             "content": {
-              "type": "ALIAS",
-              "content": {
-                "type": "TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 4,
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
                   "content": {
-                    "type": "STRING",
-                    "value": "d:"
-                  }
+                    "type": "TOKEN",
+                    "content": {
+                      "type": "PREC",
+                      "value": 4,
+                      "content": {
+                        "type": "STRING",
+                        "value": "d:"
+                      }
+                    }
+                  },
+                  "named": false,
+                  "value": "d:"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "attributed_roll_marker"
                 }
-              },
-              "named": false,
-              "value": "d:"
+              ]
             }
           },
           {
@@ -603,6 +652,17 @@
             }
           }
         ]
+      }
+    },
+    "attributed_roll_marker": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 4,
+        "content": {
+          "type": "PATTERN",
+          "value": "d\\([^)\\n]+\\):"
+        }
       }
     },
     "card": {

@@ -1,6 +1,7 @@
 /**
  * Tree-sitter grammar for Lonelog 1.5.0 notation (https://lonelog.readthedocs.io), including the
- * Combat, Dungeon Crawling, Resource Tracking, Wargaming, Dice Notation and Cards add-ons.
+ * Combat, Dungeon Crawling, Resource Tracking, Wargaming, Dice Notation and Cards add-ons, and
+ * Partylog 1.0.0 (the group-play fork: `!` world events, `d(Name):` attributed rolls, `R1` rounds).
  *
  * Line-oriented and forgiving: text that isn't recognised notation produces no nodes, so prose
  * never yields errors. A line is an optional line-start construct (`?`, `tbl:`, `S1`, `Rd1`, ...)
@@ -60,6 +61,7 @@ module.exports = grammar({
     _line_start: ($) =>
       choice(
         $.question,
+        $.event,
         $.table,
         $.generator,
         $.table_entry,
@@ -76,15 +78,23 @@ module.exports = grammar({
     // §3.1 `? Is anyone inside?`
     question: ($) => prec.right(seq(field('marker', marker('?')), repeat($._plain))),
 
+    // Partylog §3.2 world events: `! The ceiling begins to crack`. The marker takes its trailing
+    // space so a markdown image (`![alt](url)`) at the start of a paragraph isn't an event.
+    event: ($) =>
+      prec.right(
+        seq(field('marker', alias(token(prec(PREC_MARKER, /![ \t]/)), '!')), repeat($._plain)),
+      ),
+
     // §4.3 `tbl: d100=42 -> "A broken sword"`, `gen: NPC -> Merchant`
     table: ($) => prec.right(seq(field('marker', marker('tbl:')), repeat($._plain))),
     generator: ($) => prec.right(seq(field('marker', marker('gen:')), repeat($._plain))),
 
-    // §4.3.1 inline table rows: `1-2: Nothing — eerie silence`
+    // §4.3.1 inline table rows: `1-2: Nothing — eerie silence`. Also the Dungeon add-on's analog
+    // status rows (`R1: cleared, looted`), which would otherwise read as Partylog rounds.
     table_entry: ($) =>
       prec.right(
         seq(
-          field('key', alias(token(prec(PREC_MARKER, /\d+(-\d+)?:/)), $.entry_key)),
+          field('key', alias(token(prec(PREC_MARKER, /(\d+(-\d+)?|R\d+):/)), $.entry_key)),
           repeat($._plain),
         ),
       ),
@@ -97,15 +107,24 @@ module.exports = grammar({
     scene: ($) => prec.right(seq(field('id', $.scene_id), repeat($._plain))),
     scene_id: (_) => token(prec(PREC_MARKER, /(T\d+(\+T\d+)*-)?S\d+([a-z]|\.\d+)?/)),
 
-    // Combat rounds and Wargaming turns: `Rd1`, `Tn3 Shoot:`
+    // Combat rounds, Wargaming turns and Partylog rounds: `Rd1`, `Tn3 Shoot:`, `R1`
     round: ($) => prec.right(seq(field('id', $.round_id), repeat($._plain))),
-    round_id: (_) => token(prec(PREC_MARKER, /(Rd|Tn)\d+/)),
+    round_id: (_) => token(prec(PREC_MARKER, /(Rd|Tn|R)\d+/)),
 
-    // §5.2.2 analog header fields: `[Date]  2025-09-03`
+    // §5.2.2 analog header fields: `[Date]  2025-09-03`, `[Start Date]`, `[PCs]`, `[GM]`.
+    // All-caps names of three or more letters are block tags (`[COMBAT]`), not fields.
     header_field: ($) =>
       prec.right(
         seq(
-          field('name', alias(token(prec(PREC_MARKER, /\[[A-Z][a-z]+\]/)), $.field_name)),
+          field(
+            'name',
+            alias(
+              token(
+                prec(PREC_MARKER, /\[([A-Z]+[a-z][A-Za-z]*|[A-Z]{1,2})( [A-Z][A-Za-z]*)*\]/),
+              ),
+              $.field_name,
+            ),
+          ),
           repeat($._plain),
         ),
       ),
@@ -134,9 +153,16 @@ module.exports = grammar({
       ),
     actor: (_) => token.immediate(/\([^)\n]+\)/),
 
-    // §3.2.1 `d: Stealth d6=5 vs TN 4`; Cards add-on `d: draw=Qs`
+    // §3.2.1 `d: Stealth d6=5 vs TN 4`; Cards add-on `d: draw=Qs`;
+    // Partylog attributed rolls `d(Kael): d20+5=18`, `d(Mira > Kael): ...`
     roll: ($) =>
-      prec.right(seq(field('marker', marker('d:')), repeat(choice($._plain, $.card)))),
+      prec.right(
+        seq(
+          field('marker', choice(marker('d:'), $.attributed_roll_marker)),
+          repeat(choice($._plain, $.card)),
+        ),
+      ),
+    attributed_roll_marker: (_) => token(prec(PREC_MARKER, /d\([^)\n]+\):/)),
     card: (_) => token(prec(PREC_VALUE, CARD)),
 
     // §3.2.2 `-> Success`, `-> Yes, but... (d6=4)`

@@ -258,3 +258,75 @@ I fear for our sanity."
 ---|||
 
 (source_file)
+
+==================|||
+Partylog: world events and attributed rolls
+==================|||
+
+! Poison gas fills the chamber
+d(Kael): CON save d20+2=14 vs DC 13 -> Success
+d(Mira > Kael): Athletics d20+2 -> Success
+=> Kael holds his breath. [PC:Sable|poisoned]
+
+---|||
+
+(source_file
+  (event)
+  (roll
+    (attributed_roll_marker)
+    (dice)
+    (comparison))
+  (outcome)
+  (roll
+    (attributed_roll_marker)
+    (dice))
+  (outcome)
+  (consequence
+    (tag
+      (tag_open)
+      (tag_name)
+      (tag_separator)
+      (tag_attribute))))
+
+==================|||
+Partylog: rounds, dialogue and header fields
+==================|||
+
+[Start Date]  2025-09-03
+[PCs]         Kael, Sable
+R1
+@(Mira) Reckless Attack
+PC(Kael): "I don't trust him."
+
+---|||
+
+(source_file
+  (header_field
+    (field_name))
+  (header_field
+    (field_name))
+  (round
+    (round_id))
+  (action
+    (actor))
+  (dialogue
+    (speaker)
+    (string)))
+
+==================|||
+Partylog round marker vs dungeon status row
+==================|||
+
+R2
+R2: cleared (guard room)
+[COMBAT]
+![a map](map.png)
+
+---|||
+
+(source_file
+  (round
+    (round_id))
+  (table_entry
+    (entry_key))
+  (block_tag))

@@ -163,6 +163,52 @@
     }
   },
   {
+    "type": "event",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block_tag",
+          "named": true
+        },
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "dice",
+          "named": true
+        },
+        {
+          "type": "meta_note",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "generator",
     "named": true,
     "fields": {
@@ -355,6 +401,10 @@
         "required": true,
         "types": [
           {
+            "type": "attributed_roll_marker",
+            "named": true
+          },
+          {
             "type": "d:",
             "named": false
           }
@@ -527,6 +577,10 @@
         },
         {
           "type": "dice",
+          "named": true
+        },
+        {
+          "type": "event",
           "named": true
         },
         {
@@ -794,6 +848,10 @@
     }
   },
   {
+    "type": "!",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -835,6 +893,10 @@
   },
   {
     "type": "actor",
+    "named": true
+  },
+  {
+    "type": "attributed_roll_marker",
     "named": true
   },
   {
