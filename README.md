@@ -56,9 +56,11 @@ Use `make update-corpus` rather than `tree-sitter test --update` directly: the c
 
 ### Try it without installing
 
+From the repository root:
+
 ```sh
 make parser
-nvim --cmd 'set rtp^=~/Code/lua/lonelog-vim' test/fixtures/session.lonelog.md
+nvim --cmd 'set rtp^=.' test/fixtures/session.lonelog.md
 ```
 
 Useful checks: `:set ft?`, `:InspectTree`, and `:Inspect` on a Lonelog token.
