@@ -1,4 +1,4 @@
-; Line markers
+; Line and segment markers
 (action
   marker: _ @keyword)
 
@@ -27,9 +27,17 @@
 
 (speaker) @label
 
-(scene_id) @markup.heading @nospell
+; Structure
+[
+  (scene_id)
+  (round_id)
+] @markup.heading @nospell
 
 (session_header) @markup.heading
+
+(field_name) @property
+
+(block_tag) @keyword.directive @nospell
 
 [
   (block_marker)
@@ -37,30 +45,28 @@
 ] @punctuation.special
 
 ; Values
-(dice) @number @nospell
-
 (comparison) @keyword.operator
 
 (string) @string
 
 (meta_note) @comment
 
-; Tags. Priority beats markdown_inline, which reads `[N:...]` in paragraphs as a link.
+; The card token includes its leading `=`; highlight only the card.
+((card) @constant @nospell
+  (#offset! @constant 0 1 0 0))
+
+; Tags. Whole name and attributes first, then the pieces inside them at a higher priority.
+((tag_name) @label
+  (#set! priority 105))
+
+((tag_attribute) @variable.member
+  (#set! priority 105))
+
 ((tag_open) @type @nospell
   (#set! priority 110))
 
 ((tag
   "]" @type)
-  (#set! priority 110))
-
-((tag_text) @variable.member
-  (#set! priority 105))
-
-((tag
-  .
-  (tag_open)
-  .
-  (tag_text) @label)
   (#set! priority 110))
 
 ((tag_key) @property
@@ -69,5 +75,13 @@
 ((tag_separator) @punctuation.delimiter
   (#set! priority 110))
 
-((progress) @number @nospell
+([
+  (dice)
+  (progress)
+  (delta)
+  (multiplier)
+] @number @nospell
+  (#set! priority 110))
+
+((transition) @operator
   (#set! priority 110))

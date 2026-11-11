@@ -88,10 +88,10 @@ local function has_tag_reset(b, needle)
   error("needle not found: " .. needle)
 end
 
--- Tags in paragraphs are shielded from markdown link styling; real links are not
+-- Bracketed notation in paragraphs is shielded from markdown link styling; inline links are not
 check("tag in paragraph gets link-style reset", has_tag_reset(buf, "[Clock"))
-check("real link is left alone", not has_tag_reset(buf, "[a real link]"))
-check("non-tag brackets are left alone", not has_tag_reset(buf, "[whispers]"))
+check("plain brackets get link-style reset", has_tag_reset(buf, "[whispers]"))
+check("inline link is left alone", not has_tag_reset(buf, "[a real link]"))
 check(
   "reset group is nocombine",
   vim.api.nvim_get_hl(0, { name = "@lonelog.tag" }).nocombine == true
@@ -115,6 +115,27 @@ end
 screen = table.concat(screen)
 check("tag brackets not concealed", screen:find("[Clock:", 1, true) ~= nil, screen)
 vim.wo.conceallevel = 0
+
+-- Add-ons
+local addons = open("test/fixtures/addons.lonelog.md")
+check("combat: block tag", has(lonelog_captures(addons, "[COMBAT]"), "keyword.directive"))
+check("combat: block tag gets link-style reset", has_tag_reset(addons, "[COMBAT]"))
+check("combat: round marker", has(lonelog_captures(addons, "Rd1"), "markup.heading"))
+check("combat: mid-line action", has(lonelog_captures(addons, "@(Thug)"), "keyword"))
+check("combat: mid-line roll", has(lonelog_captures(addons, "d:9"), "function"))
+check("combat: mid-line consequence", has(lonelog_captures(addons, "=> [F:Thug"), "operator"))
+check("combat: count in tag", has(lonelog_captures(addons, "×2"), "number"))
+check("dungeon: block tag in fence", has(lonelog_captures(addons, "[DUNGEON"), "keyword.directive"))
+check("resources: transition", has(lonelog_captures(addons, "→1"), "operator"))
+check("resources: usage die in tag", has(lonelog_captures(addons, "d8→"), "number"))
+check("resources: delta", has(lonelog_captures(addons, "-8]"), "number"))
+check("wargaming: turn marker", has(lonelog_captures(addons, "Tn3"), "markup.heading"))
+check("dice: keep-highest modifier", has(lonelog_captures(addons, "kh1"), "number"))
+check("dice: drop-lowest modifier", has(lonelog_captures(addons, "dl1"), "number"))
+check("cards: tarot draw", has(lonelog_captures(addons, "M16r"), "constant"))
+check("cards: suit draw", has(lonelog_captures(addons, "KWa"), "constant"))
+check("prose: card-shaped word is plain", #lonelog_captures(addons, "Ks and") == 0)
+check("prose: 'dead' is not dice", #lonelog_captures(addons, "dead man") == 0)
 
 -- Plain markdown only gets tagged fences
 plain = open("test/fixtures/plain.md")
