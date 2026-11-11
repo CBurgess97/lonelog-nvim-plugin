@@ -1,0 +1,5 @@
+.direnv/
+.envrc
+lua_modules/
+result
+CLAUDE.local.md
