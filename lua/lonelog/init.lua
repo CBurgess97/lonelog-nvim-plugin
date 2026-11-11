@@ -57,4 +57,18 @@ function M.setup_treesitter()
   end, { force = true })
 end
 
+function M.setup_highlights()
+  local function define()
+    -- No style of its own: `nocombine` just blocks the markdown link attributes underneath.
+    -- See queries/markdown_inline/highlights.scm.
+    vim.api.nvim_set_hl(0, "@lonelog.tag", { nocombine = true, default = true })
+  end
+  define()
+  -- Colorschemes clear highlights when they load.
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("lonelog_highlights", { clear = true }),
+    callback = define,
+  })
+end
+
 return M

@@ -1,6 +1,8 @@
 -- Headless checks for filetype detection and Lonelog injections.
 -- Run with `make test-nvim` (needs parser/lonelog.so, built by `make parser`).
 
+vim.o.swapfile = false
+
 local failures = 0
 
 local function check(name, ok, detail)
@@ -70,6 +72,36 @@ check("front matter untouched", #lonelog_captures(buf, "title:") == 0)
 local ok, err = pcall(require("vim.treesitter._headings").jump, { count = 1 })
 check("]] heading navigation works", ok, tostring(err))
 
+--- Whether markdown_inline's `lonelog.tag` capture covers the first match of `needle`.
+local function has_tag_reset(b, needle)
+  for row, line in ipairs(vim.api.nvim_buf_get_lines(b, 0, -1, false)) do
+    local col = line:find(needle, 1, true)
+    if col then
+      for _, c in ipairs(vim.treesitter.get_captures_at_pos(b, row - 1, col - 1)) do
+        if c.lang == "markdown_inline" and c.capture == "lonelog.tag" then
+          return true
+        end
+      end
+      return false
+    end
+  end
+  error("needle not found: " .. needle)
+end
+
+-- Tags in paragraphs are shielded from markdown link styling; real links are not
+check("tag in paragraph gets link-style reset", has_tag_reset(buf, "[Clock"))
+check("real link is left alone", not has_tag_reset(buf, "[a real link]"))
+check("non-tag brackets are left alone", not has_tag_reset(buf, "[whispers]"))
+check(
+  "reset group is nocombine",
+  vim.api.nvim_get_hl(0, { name = "@lonelog.tag" }).nocombine == true
+)
+vim.cmd("colorscheme default")
+check(
+  "reset group survives colorscheme change",
+  vim.api.nvim_get_hl(0, { name = "@lonelog.tag" }).nocombine == true
+)
+
 -- Tag brackets in paragraphs survive markdown's link conceal
 vim.o.columns, vim.o.lines = 60, 10
 vim.wo.conceallevel = 2
@@ -86,6 +118,7 @@ vim.wo.conceallevel = 0
 
 -- Plain markdown only gets tagged fences
 plain = open("test/fixtures/plain.md")
+check("plain: tag-shaped link keeps link style", not has_tag_reset(plain, "[N:Plain"))
 check("plain: untagged fence", #lonelog_captures(plain, "@ Untagged") == 0)
 check("plain: paragraph", #lonelog_captures(plain, "@ So does") == 0)
 check("plain: tagged fence", has(lonelog_captures(plain, "@ Tagged"), "keyword"))

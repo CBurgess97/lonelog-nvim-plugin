@@ -6,3 +6,4 @@ vim.g.loaded_lonelog = true
 local lonelog = require("lonelog")
 lonelog.setup_filetype()
 lonelog.setup_treesitter()
+lonelog.setup_highlights()

@@ -14,7 +14,7 @@ d: Stealth d6=5 vs TN 4 -> Success
 => I slip inside unnoticed. [L:Library|dark|quiet]
 ```
 
-Prose between blocks, then notation written straight in:
+Prose with [a real link](https://example.com) and a [whispers] aside, then notation:
 ? Is anyone inside?
 -> Yes, but... (d6=4)
 
