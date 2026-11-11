@@ -7,18 +7,16 @@ Reference tag and progress
 ---
 
 (source_file
-  (text_line
-    (tag
-      (tag_open)
-      (tag_text))
-    (tag
-      (tag_open)
-      (tag_text)
-      (progress))
-    (tag
-      (tag_open)
-      (tag_text)
-      (tag_text))))
+  (tag
+    (tag_open)
+    (tag_name))
+  (tag
+    (tag_open)
+    (tag_name
+      (progress)))
+  (tag
+    (tag_open)
+    (tag_name)))
 
 ==================
 Categorised attributes
@@ -29,16 +27,15 @@ Categorised attributes
 ---
 
 (source_file
-  (text_line
-    (tag
-      (tag_open)
-      (tag_text)
-      (tag_separator)
-      (tag_key)
-      (tag_text)
-      (tag_separator)
-      (tag_key)
-      (tag_text))))
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute
+      (tag_key))
+    (tag_separator)
+    (tag_attribute
+      (tag_key))))
 
 ==================
 Multi-line tag
@@ -51,13 +48,12 @@ Multi-line tag
 ---
 
 (source_file
-  (text_line
-    (tag
-      (tag_open)
-      (tag_text)
-      (tag_separator)
-      (tag_key)
-      (tag_text))))
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute
+      (tag_key))))
 
 ==================
 Roll context brackets are not tags
@@ -70,5 +66,5 @@ d: Stealth d6 [+cover, -injured] vs TN 4 -> Fail
 (source_file
   (roll
     (dice)
-    (comparison)
-    (outcome)))
+    (comparison))
+  (outcome))

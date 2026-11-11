@@ -1,0 +1,260 @@
+==================|||
+Combat: compact round on one line
+==================|||
+
+Rd1 @ Slash d:17≥12 Hit HP-5 @(Thug) d:9≥15 Miss
+Rd2 @ Finish him d:20≥12 Hit => [F:Thug|dead]
+
+---|||
+
+(source_file
+  (round
+    (round_id))
+  (action)
+  (roll
+    (comparison))
+  (action
+    (actor))
+  (roll
+    (comparison))
+  (round
+    (round_id))
+  (action)
+  (roll
+    (comparison))
+  (consequence
+    (tag
+      (tag_open)
+      (tag_name)
+      (tag_separator)
+      (tag_attribute))))
+
+==================|||
+Combat: block tags
+==================|||
+
+S9 *Dock ambush* [COMBAT]
+[/COMBAT] =>Captain escapes
+--- END COMBAT ---
+
+---|||
+
+(source_file
+  (scene
+    (scene_id)
+    (block_tag))
+  (block_tag)
+  (consequence)
+  (block_marker))
+
+==================|||
+Combat: foe tags with counts and deltas
+==================|||
+
+[F:Goblins×4|HP 3 each|Close] [F:Thug A|HP-3] [PC:Alex|Zone:Street]
+
+---|||
+
+(source_file
+  (tag
+    (tag_open)
+    (tag_name
+      (multiplier))
+    (tag_separator)
+    (tag_attribute)
+    (tag_separator)
+    (tag_attribute))
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute
+      (delta)))
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute
+      (tag_key))))
+
+==================|||
+Resources: transitions, usage dice and wealth
+==================|||
+
+[Inv:Torch|3→1] [Inv:Short Sword|1|rusty→repaired] [PC:Kael|Supply d8→d6]
+=> [Wealth:Gold-8] [Inv:Arrow+3]
+
+---|||
+
+(source_file
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute
+      (transition)))
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute)
+    (tag_separator)
+    (tag_attribute
+      (transition)))
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute
+      (dice)
+      (transition)
+      (dice)))
+  (consequence
+    (tag
+      (tag_open)
+      (tag_name
+        (delta)))
+    (tag
+      (tag_open)
+      (tag_name
+        (delta)))))
+
+==================|||
+Dungeon: rooms and status block
+==================|||
+
+[DUNGEON STATUS]
+[R:1|cleared, looted|entry cave|exits N:R2, E:R3]
+[#R:3]
+[/DUNGEON STATUS]
+
+---|||
+
+(source_file
+  (block_tag)
+  (tag
+    (tag_open)
+    (tag_name)
+    (tag_separator)
+    (tag_attribute)
+    (tag_separator)
+    (tag_attribute)
+    (tag_separator)
+    (tag_attribute))
+  (tag
+    (tag_open)
+    (tag_name))
+  (block_tag))
+
+==================|||
+Wargaming: turns and units
+==================|||
+
+Tn3 Shoot:
+@(Rifles) Hold position, volley fire
+=> [Unit:Rifles|×10|Morale 8|Armor CT22->8/RT18]
+
+---|||
+
+(source_file
+  (round
+    (round_id))
+  (action
+    (actor))
+  (consequence
+    (tag
+      (tag_open)
+      (tag_name)
+      (tag_separator)
+      (tag_attribute
+        (multiplier))
+      (tag_separator)
+      (tag_attribute)
+      (tag_separator)
+      (tag_attribute
+        (transition)))))
+
+==================|||
+Dice notation modifiers
+==================|||
+
+d: Persuade 2d20kh1+4=16
+d: Ability 4d6dl1=15, Fate 4dF+2=3, Oracle d%=34
+d: Attack 5d10>=7=3 -> Hit
+d: Fighting d6! and 4d10r<=3
+
+---|||
+
+(source_file
+  (roll
+    (dice))
+  (roll
+    (dice)
+    (dice)
+    (dice))
+  (roll
+    (dice))
+  (outcome)
+  (roll
+    (dice)
+    (dice)))
+
+==================|||
+Cards
+==================|||
+
+d: draw=Qs
+d: draw=M16r -> Collapse
+d: Past=5Sw, Present=KWa, Future=Jkr
+
+---|||
+
+(source_file
+  (roll
+    (card))
+  (roll
+    (card))
+  (outcome)
+  (roll
+    (card)
+    (card)
+    (card)))
+
+==================|||
+Card and dice shapes in prose are not notation
+==================|||
+
+As I walked, the dead man said nothing.
+The total was 2 + 2 = 4, Ks and all.
+
+---|||
+
+(source_file)
+
+==================|||
+Analog header fields
+==================|||
+
+=== Session 3: The Orc Warren ===
+[Date]        2025-10-15
+[Recap]       Found the warren entrance.
+
+---|||
+
+(source_file
+  (session_header)
+  (header_field
+    (field_name))
+  (header_field
+    (field_name)))
+
+==================|||
+Quote left open on a line
+==================|||
+
+"Day 47: The tides no longer obey the moon.
+I fear for our sanity."
+
+---|||
+
+(source_file)

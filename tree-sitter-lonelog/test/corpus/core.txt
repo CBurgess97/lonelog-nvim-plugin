@@ -32,9 +32,8 @@ Question and oracle answer
 
 (source_file
   (question)
-  (text_line
-    (outcome
-      (dice))))
+  (outcome
+    (dice)))
 
 ==================
 Mechanics roll with comparison
@@ -49,11 +48,11 @@ d: 2<=4 F
 (source_file
   (roll
     (dice)
-    (comparison)
-    (outcome))
+    (comparison))
+  (outcome)
   (roll
-    (comparison)
-    (outcome))
+    (comparison))
+  (outcome)
   (roll
     (comparison)))
 
@@ -69,11 +68,11 @@ Consequence with tag
   (consequence
     (tag
       (tag_open)
-      (tag_text)
+      (tag_name)
       (tag_separator)
-      (tag_text)
+      (tag_attribute)
       (tag_separator)
-      (tag_text))))
+      (tag_attribute))))
 
 ==================
 Indented sequence
@@ -89,6 +88,6 @@ Indented sequence
   (action)
   (roll
     (dice)
-    (comparison)
-    (outcome))
+    (comparison))
+  (outcome)
   (consequence))

@@ -9,10 +9,7 @@ Nobody said "goodbye".
 ---
 
 (source_file
-  (text_line)
-  (text_line)
-  (text_line
-    (string)))
+  (string))
 
 ==================
 Unclosed tag does not swallow the following line
@@ -27,8 +24,8 @@ Unclosed tag does not swallow the following line
   (consequence
     (tag
       (tag_open)
-      (tag_text)
+      (tag_name)
       (tag_separator)
-      (tag_text)
+      (tag_attribute)
       (MISSING "]")))
   (action))

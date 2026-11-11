@@ -60,12 +60,11 @@ gen: NPC
   (table_entry
     (entry_key))
   (table
-    (dice)
-    (outcome))
+    (dice))
+  (outcome)
   (generator)
-  (text_line
-    (dice)
-    (outcome)))
+  (dice)
+  (outcome))
 
 ==================|||
 Dialogue and excerpts
@@ -88,6 +87,5 @@ The diary reads.
     (speaker)
     (string))
   (excerpt_delimiter)
-  (text_line)
   (excerpt_delimiter)
   (block_marker))
