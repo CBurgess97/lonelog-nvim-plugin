@@ -20,7 +20,7 @@ parser/lonelog.so: $(GRAMMAR)/src/parser.c
 	$(CC) $(CFLAGS) -shared -fPIC -I $(GRAMMAR)/src $(GRAMMAR)/src/parser.c -o $@
 
 test-nvim: parser
-	nvim --headless --clean --cmd 'set rtp^=.' -l test/nvim_spec.lua
+	nvim --headless --clean --cmd 'set rtp^=.' -c 'luafile test/nvim_spec.lua'
 
 clean:
 	rm -rf parser
