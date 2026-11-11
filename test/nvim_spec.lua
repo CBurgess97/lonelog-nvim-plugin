@@ -137,6 +137,17 @@ check("cards: suit draw", has(lonelog_captures(addons, "KWa"), "constant"))
 check("prose: card-shaped word is plain", #lonelog_captures(addons, "Ks and") == 0)
 check("prose: 'dead' is not dice", #lonelog_captures(addons, "dead man") == 0)
 
+-- Partylog
+local party = open("test/fixtures/partylog.lonelog.md")
+check("partylog: world event", has(lonelog_captures(party, "! Poison"), "keyword"))
+check("partylog: attributed roll", has(lonelog_captures(party, "d(Kael):"), "function"))
+check("partylog: dice after attributed roll", has(lonelog_captures(party, "d20+2=14"), "number"))
+check("partylog: round", has(lonelog_captures(party, "R1"), "markup.heading"))
+check("partylog: dialogue", has(lonelog_captures(party, "PC(Kael):"), "label"))
+check("partylog: party tag", has(lonelog_captures(party, "[Party:"), "type"))
+check("partylog: multi-word header field", has(lonelog_captures(party, "[Start Date]"), "property"))
+check("partylog: markdown image is not an event", #lonelog_captures(party, "![a map]") == 0)
+
 -- Plain markdown only gets tagged fences
 plain = open("test/fixtures/plain.md")
 check("plain: tag-shaped link keeps link style", not has_tag_reset(plain, "[N:Plain"))

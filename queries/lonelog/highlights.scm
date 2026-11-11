@@ -7,6 +7,9 @@
 (question
   marker: _ @keyword)
 
+(event
+  marker: _ @keyword)
+
 (roll
   marker: _ @function)
 
